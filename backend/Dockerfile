@@ -14,15 +14,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 COPY pyproject.toml ./
-COPY src ./src
+COPY app ./app
 
 RUN pip install --upgrade pip && pip install -e .
 
-RUN useradd --create-home --uid 1000 lumen && \
-    mkdir -p /data /models && chown -R lumen:lumen /app /data /models
+RUN useradd --create-home --uid 1000 folio && \
+    mkdir -p /data /models && chown -R folio:folio /app /data /models
 
-USER lumen
+USER folio
 
 EXPOSE 8000
 
-CMD ["uvicorn", "lumen.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

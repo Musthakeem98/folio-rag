@@ -1,14 +1,14 @@
 """Build pipelines from Settings. One place, obvious wiring, no DI framework."""
 
-from lumen.config import Settings
-from lumen.core.pipeline import IngestPipeline
-from lumen.embed.sentence_transformer import SentenceTransformerEmbedder
-from lumen.ingest.chunker import MarkdownStructuralChunker
-from lumen.ingest.parsers.markdown import MarkdownParser
-from lumen.ingest.parsers.pdf_docling import DoclingParser
-from lumen.ingest.parsers.web import WebParser
-from lumen.retrieve.bm25 import BM25Retriever
-from lumen.store.lancedb_store import LanceDBStore
+from app.config import Settings
+from app.core.pipeline import IngestPipeline
+from app.embed.sentence_transformer import SentenceTransformerEmbedder
+from app.ingest.chunker import MarkdownStructuralChunker
+from app.ingest.parsers.markdown import MarkdownParser
+from app.ingest.parsers.pdf_docling import DoclingParser
+from app.ingest.parsers.web import WebParser
+from app.retrieve.bm25 import BM25Retriever
+from app.store.lancedb_store import LanceDBStore
 
 
 def build_ingest_pipeline(settings: Settings) -> IngestPipeline:

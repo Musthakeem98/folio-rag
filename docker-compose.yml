@@ -1,22 +1,22 @@
-name: lumen
+name: folio
 
 services:
   api:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: lumen-api
+    container_name: folio-api
     env_file: .env
     environment:
       OLLAMA_HOST: http://ollama:11434
-      LUMEN_DOCLING_HOST: http://docling:5001
-      LUMEN_LANCEDB_PATH: /data/lancedb
+      FOLIO_DOCLING_HOST: http://docling:5001
+      FOLIO_LANCEDB_PATH: /data/lancedb
       HF_HOME: /models/hf
     ports:
-      - "${LUMEN_API_PORT:-8000}:8000"
+      - "${FOLIO_API_PORT:-8000}:8000"
     volumes:
-      - ${LUMEN_DATA_DIR:-./data}:/data
-      - ${LUMEN_MODELS_DIR:-./models}:/models
+      - ${FOLIO_DATA_DIR:-./data}:/data
+      - ${FOLIO_MODELS_DIR:-./models}:/models
     depends_on:
       ollama:
         condition: service_healthy
@@ -35,7 +35,7 @@ services:
     # cu124 variant (see the gpu profile below). Pin a specific tag for
     # reproducibility before you ship.
     image: quay.io/docling-project/docling-serve-cpu:latest
-    container_name: lumen-docling
+    container_name: folio-docling
     environment:
       DOCLING_SERVE_ENABLE_UI: "false"
     ports:
@@ -51,7 +51,7 @@ services:
   docling-gpu:
     profiles: ["gpu"]
     image: quay.io/docling-project/docling-serve-cu124:latest
-    container_name: lumen-docling-gpu
+    container_name: folio-docling-gpu
     environment:
       DOCLING_SERVE_ENABLE_UI: "false"
     ports:
@@ -69,7 +69,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: lumen-web
+    container_name: folio-web
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:8000
       API_INTERNAL_URL: http://api:8000
@@ -82,7 +82,7 @@ services:
 
   ollama:
     image: ollama/ollama:latest
-    container_name: lumen-ollama
+    container_name: folio-ollama
     ports:
       - "11434:11434"
     volumes:

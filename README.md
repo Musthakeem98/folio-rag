@@ -1,10 +1,10 @@
-# Lumen
+# Folio
 
-> **Working codename — rename before launch.** A local-first, open-source RAG system for PDFs, scans, and web content.
+> A local-first, open-source RAG system for PDFs, scans, and web content.
 
-Lumen gives you a self-hostable retrieval-augmented-generation stack that runs fully offline. Point it at a folder of PDFs or a list of URLs, ask questions, get answers with inline citations back to the source page/span.
+Folio gives you a self-hostable retrieval-augmented-generation stack that runs fully offline. Point it at a folder of PDFs or a list of URLs, ask questions, get answers with inline citations back to the source page/span.
 
-## Why Lumen
+## Why Folio
 
 - **Local-first by default** — Ollama + local embeddings + embedded vector store. Zero API keys required.
 - **PDF-grade retrieval** — Docling-based parsing (layout, tables, formulas), hybrid dense + BM25, cross-encoder reranking.
@@ -16,7 +16,7 @@ Lumen gives you a self-hostable retrieval-augmented-generation stack that runs f
 
 ```bash
 # Clone and bring up the full stack
-git clone <this-repo>.git lumen && cd lumen
+git clone <this-repo>.git folio && cd folio
 cp .env.example .env
 docker compose up -d
 

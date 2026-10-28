@@ -4,7 +4,7 @@ from collections.abc import AsyncIterator
 
 import httpx
 
-from lumen.core.schemas import RetrievedChunk
+from app.core.schemas import RetrievedChunk
 
 
 class OllamaGenerator:

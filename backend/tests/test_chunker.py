@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from lumen.ingest.chunker import MarkdownStructuralChunker
+from app.ingest.chunker import MarkdownStructuralChunker
 
 FIXTURE = Path(__file__).parent / "fixtures" / "sample.md"
 

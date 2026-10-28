@@ -5,5 +5,5 @@ set -e
 ollama serve &
 PID=$!
 sleep 3
-ollama pull "${LUMEN_LLM_MODEL:-qwen2.5:7b-instruct}" || true
+ollama pull "${FOLIO_LLM_MODEL:-qwen2.5:7b-instruct}" || true
 wait "$PID"

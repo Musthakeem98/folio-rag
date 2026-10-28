@@ -14,7 +14,7 @@ import pickle
 from pathlib import Path
 from typing import Any
 
-from lumen.core.schemas import Chunk, RetrievedChunk
+from app.core.schemas import Chunk, RetrievedChunk
 
 
 class BM25Retriever:

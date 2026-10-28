@@ -1,16 +1,16 @@
-# Lumen — Project Blueprint
+# Folio — Project Blueprint
 
 > Working blueprint for a local-first, open-source RAG system. Lives in-repo so design decisions and their rationale are versioned with the code.
 
 ## 1. Thesis
 
-The OSS RAG space is crowded but shallow. Most frameworks optimize for *coverage* (every parser × every store × every LLM) and under-deliver on *quality* (retrieval precision on real PDFs). Lumen inverts that: one opinionated path, measured obsessively, that beats the field on PDF-grade retrieval while running fully offline.
+The OSS RAG space is crowded but shallow. Most frameworks optimize for *coverage* (every parser × every store × every LLM) and under-deliver on *quality* (retrieval precision on real PDFs). Folio inverts that: one opinionated path, measured obsessively, that beats the field on PDF-grade retrieval while running fully offline.
 
 **One-line pitch:** `docker compose up` → point at a folder of PDFs → ask questions with cited answers, offline, with eval numbers you can reproduce.
 
 ## 2. Non-goals
 
-- Hosted/SaaS offering. Lumen is self-hosted software.
+- Hosted/SaaS offering. Folio is self-hosted software.
 - Agent framework. We don't orchestrate tools or multi-step workflows.
 - Fine-tuning platform. Bring your own fine-tuned embedder; we expose the interface.
 - Connector sprawl (Slack, Notion, Drive, Confluence, ...). Filesystem + URL only until core quality is proven.

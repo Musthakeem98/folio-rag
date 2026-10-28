@@ -1,4 +1,4 @@
-from lumen.eval.metrics import ndcg_at_k, recall_at_k
+from app.eval.metrics import ndcg_at_k, recall_at_k
 
 
 def test_recall_at_k_perfect() -> None:

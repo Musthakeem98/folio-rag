@@ -21,7 +21,7 @@ class WebParsed:
 class WebParser:
     name = "web"
 
-    def __init__(self, timeout: float = 30.0, user_agent: str = "Lumen/0.0 (+github)"):
+    def __init__(self, timeout: float = 30.0, user_agent: str = "Folio/0.0 (+github)"):
         self.timeout = timeout
         self.user_agent = user_agent
 

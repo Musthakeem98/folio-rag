@@ -4,10 +4,10 @@ from pathlib import Path
 import typer
 from rich.console import Console
 
-from lumen.config import get_settings
-from lumen.core.factory import build_ingest_pipeline
+from app.config import get_settings
+from app.core.factory import build_ingest_pipeline
 
-app = typer.Typer(help="Lumen — local-first RAG CLI.", no_args_is_help=True)
+app = typer.Typer(help="Folio — local-first RAG CLI.", no_args_is_help=True)
 console = Console()
 
 
@@ -57,7 +57,7 @@ def ask(
 
 @app.command("eval")
 def run_eval(
-    config: Path = typer.Option(Path("configs/lumen.default.yaml"), "--config", "-c"),
+    config: Path = typer.Option(Path("configs/folio.default.yaml"), "--config", "-c"),
 ) -> None:
     """Run the golden-set eval harness. (wired in Phase 3)"""
     console.print(f"[yellow]eval harness not yet wired. config={config}[/]")

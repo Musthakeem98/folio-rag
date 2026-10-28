@@ -1,6 +1,6 @@
-# Lumen backend
+# Folio backend
 
-FastAPI service + Typer CLI for the Lumen RAG pipeline.
+FastAPI service + Typer CLI for the Folio RAG pipeline.
 
 ## Local dev
 
@@ -9,19 +9,19 @@ uv venv && source .venv/bin/activate
 uv pip install -e ".[dev]"
 
 # Run API
-uvicorn lumen.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8000
 
 # Or use the CLI
-lumen --help
-lumen index ./sample_docs
-lumen ask "What is the retention period?"
-lumen eval --config ../configs/lumen.default.yaml
+folio --help
+folio index ./sample_docs
+folio ask "What is the retention period?"
+folio eval --config ../configs/folio.default.yaml
 ```
 
 ## Layout
 
 ```
-src/lumen/
+app/
   main.py          FastAPI app factory
   config.py        Pydantic settings (env + YAML)
   cli.py           Typer CLI (index, ask, eval)

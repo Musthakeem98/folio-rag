@@ -15,8 +15,8 @@ from dataclasses import dataclass, field
 from re import Match
 from re import compile as re_compile
 
-from lumen.core.ids import chunk_id_for
-from lumen.core.schemas import Chunk
+from app.core.ids import chunk_id_for
+from app.core.schemas import Chunk
 
 _HEADING_RE = re_compile(r"^(#{1,6})\s+(.+?)\s*#*\s*$")
 _FENCE_RE = re_compile(r"^(```|~~~)")

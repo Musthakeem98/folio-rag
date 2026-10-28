@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from lumen import __version__
+from app import __version__
 
 router = APIRouter(tags=["meta"])
 

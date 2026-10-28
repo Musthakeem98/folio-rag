@@ -3,13 +3,13 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "lumen"
+name = "folio"
 version = "0.0.1"
 description = "Local-first, open-source RAG for PDFs and the web."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
-authors = [{ name = "Lumen contributors" }]
+authors = [{ name = "Folio contributors" }]
 keywords = ["rag", "retrieval", "llm", "embeddings", "pdf", "ollama", "lancedb"]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -57,19 +57,19 @@ gpu = [
 ]
 
 [project.scripts]
-lumen = "lumen.cli:app"
+folio = "app.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/your-org/lumen"
-Issues = "https://github.com/your-org/lumen/issues"
+Homepage = "https://github.com/your-org/folio"
+Issues = "https://github.com/your-org/folio/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/lumen"]
+packages = ["app"]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-src = ["src"]
+src = ["app"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "A", "C4", "SIM", "TID", "RUF"]
@@ -78,8 +78,7 @@ ignore = ["E501"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
-packages = ["lumen"]
-mypy_path = "src"
+packages = ["app"]
 
 [tool.pytest.ini_options]
 addopts = "-ra --strict-markers"

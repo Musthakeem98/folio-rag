@@ -12,7 +12,7 @@ from typing import Any
 
 import pyarrow as pa
 
-from lumen.core.schemas import Chunk
+from app.core.schemas import Chunk
 
 
 def _schema(dim: int) -> pa.Schema:

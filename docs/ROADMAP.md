@@ -20,12 +20,12 @@ Phased plan. Each phase ships something runnable so quality can be measured befo
 - [x] LanceDB vector store with upsert-by-doc-id semantics.
 - [x] BM25 (`bm25s`) sparse index with on-disk persistence, rebuilt per ingest.
 - [x] `IngestPipeline` factory wiring + `/api/v1/documents/{upload,url}` routes.
-- [x] `lumen index <file|dir|url>` CLI.
+- [x] `folio index <file|dir|url>` CLI.
 - [x] Integration test: real LanceDB + BM25 against fixture corpus.
 - [ ] Dense retrieval returning real hits (query path).
 - [ ] Hybrid RRF fusion.
 - [ ] Cross-encoder reranker.
-- [ ] `lumen ask "..."` producing cited answers.
+- [ ] `folio ask "..."` producing cited answers.
 
 ### Known gaps carried forward
 - PDF page tracking: Docling exposes per-element provenance in its structured

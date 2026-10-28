@@ -1,5 +1,5 @@
-# Lumen default configuration.
-# Override via env vars (LUMEN_*) or by passing --config to the CLI.
+# Folio default configuration.
+# Override via env vars (FOLIO_*) or by passing --config to the CLI.
 
 ingest:
   parser:

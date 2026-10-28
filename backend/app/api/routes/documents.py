@@ -4,9 +4,9 @@ import aiofiles
 from fastapi import APIRouter, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 
-from lumen.api.deps import IngestDep, SettingsDep
-from lumen.config import Settings
-from lumen.core.pipeline import IngestPipeline
+from app.api.deps import IngestDep, SettingsDep
+from app.config import Settings
+from app.core.pipeline import IngestPipeline
 
 router = APIRouter(prefix="/documents", tags=["documents"])
 

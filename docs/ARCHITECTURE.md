@@ -8,7 +8,7 @@ A single FastAPI process hosts the API and the retrieval/generation pipeline. La
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│ lumen-api (FastAPI, uvicorn)                             │
+│ folio-api (FastAPI, uvicorn)                             │
 │                                                          │
 │  /ingest ──▶ IngestPipeline ─▶ Chunker ─▶ Embedder ─┐    │
 │                 │                                   │    │

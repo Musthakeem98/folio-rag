@@ -3,7 +3,7 @@
 set -euo pipefail
 
 OLLAMA_HOST="${OLLAMA_HOST:-http://localhost:11434}"
-MODELS=("${LUMEN_LLM_MODEL:-qwen2.5:7b-instruct}")
+MODELS=("${FOLIO_LLM_MODEL:-qwen2.5:7b-instruct}")
 
 for m in "${MODELS[@]}"; do
   echo "==> pulling $m"

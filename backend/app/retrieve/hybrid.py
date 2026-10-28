@@ -2,9 +2,9 @@
 
 from collections import defaultdict
 
-from lumen.core.schemas import RetrievedChunk
-from lumen.retrieve.bm25 import BM25Retriever
-from lumen.retrieve.dense import DenseRetriever
+from app.core.schemas import RetrievedChunk
+from app.retrieve.bm25 import BM25Retriever
+from app.retrieve.dense import DenseRetriever
 
 
 class HybridRetriever:

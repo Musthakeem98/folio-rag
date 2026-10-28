@@ -1,7 +1,7 @@
 .PHONY: help bootstrap dev up down logs api web lint test eval clean models
 
 help:
-	@echo "Lumen — common tasks"
+	@echo "Folio — common tasks"
 	@echo "  make bootstrap   install backend + frontend deps"
 	@echo "  make dev         run backend + frontend locally (no docker)"
 	@echo "  make up          docker compose up -d"
@@ -19,7 +19,7 @@ bootstrap:
 
 dev:
 	@echo "Run in separate terminals:"
-	@echo "  cd backend && uvicorn lumen.main:app --reload"
+	@echo "  cd backend && uvicorn app.main:app --reload"
 	@echo "  cd frontend && pnpm dev"
 
 up:
@@ -43,7 +43,7 @@ test:
 	cd frontend && pnpm test --run
 
 eval:
-	cd backend && python -m lumen.eval.runner --config ../configs/lumen.default.yaml
+	cd backend && python -m app.eval.runner --config ../configs/folio.default.yaml
 
 clean:
 	find . -type d -name __pycache__ -prune -exec rm -rf {} +

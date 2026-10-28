@@ -1,6 +1,6 @@
 """Cross-encoder reranker — the single highest-leverage quality lever."""
 
-from lumen.core.schemas import RetrievedChunk
+from app.core.schemas import RetrievedChunk
 
 
 class CrossEncoderReranker:

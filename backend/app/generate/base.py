@@ -1,7 +1,7 @@
 from collections.abc import AsyncIterator
 from typing import Protocol
 
-from lumen.core.schemas import RetrievedChunk
+from app.core.schemas import RetrievedChunk
 
 
 class Generator(Protocol):

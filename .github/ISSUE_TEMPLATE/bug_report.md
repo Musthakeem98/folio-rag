@@ -18,7 +18,7 @@ labels: bug
 
 **Environment**
 - OS:
-- Lumen version / commit:
+- Folio version / commit:
 - Running via: docker compose | local python
 - Models (LLM / embedder / reranker):
 

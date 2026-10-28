@@ -1,6 +1,6 @@
-# Contributing to Lumen
+# Contributing to Folio
 
-Thanks for your interest. Lumen is pre-alpha; the API will churn.
+Thanks for your interest. Folio is pre-alpha; the API will churn.
 
 ## Dev setup
 
@@ -27,7 +27,7 @@ pnpm dev
 
 ## Scope guard
 
-Lumen is **not** trying to be LangChain. We stay opinionated:
+Folio is **not** trying to be LangChain. We stay opinionated:
 - One default parser (Docling), one default embedder, one default store.
 - Alternative providers live behind a stable interface, not scattered kwargs.
 - No connector proliferation until core quality is proven on benchmarks.

@@ -4,11 +4,11 @@ from pathlib import Path
 
 import pytest
 
-from lumen.core.pipeline import IngestPipeline
-from lumen.ingest.chunker import MarkdownStructuralChunker
-from lumen.ingest.parsers.markdown import MarkdownParser
-from lumen.retrieve.bm25 import BM25Retriever
-from lumen.store.lancedb_store import LanceDBStore
+from app.core.pipeline import IngestPipeline
+from app.ingest.chunker import MarkdownStructuralChunker
+from app.ingest.parsers.markdown import MarkdownParser
+from app.retrieve.bm25 import BM25Retriever
+from app.store.lancedb_store import LanceDBStore
 
 FIXTURE = Path(__file__).parent / "fixtures" / "sample.md"
 

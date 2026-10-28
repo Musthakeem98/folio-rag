@@ -1,6 +1,6 @@
-from lumen.core.schemas import RetrievedChunk
-from lumen.embed.base import Embedder
-from lumen.store.base import VectorStore
+from app.core.schemas import RetrievedChunk
+from app.embed.base import Embedder
+from app.store.base import VectorStore
 
 
 class DenseRetriever:

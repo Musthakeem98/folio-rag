@@ -14,7 +14,7 @@ app = typer.Typer(no_args_is_help=True)
 
 @app.command()
 def run(
-    config: Path = typer.Option(Path("configs/lumen.default.yaml"), "--config", "-c"),
+    config: Path = typer.Option(Path("configs/folio.default.yaml"), "--config", "-c"),
     golden: Path | None = typer.Option(None, "--golden"),
     out: Path = typer.Option(Path("data/eval_runs"), "--out"),
 ) -> None:

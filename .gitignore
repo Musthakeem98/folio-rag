@@ -27,9 +27,9 @@ out/
 *.tsbuildinfo
 .vercel
 
-# ---- Lumen data (local-first means local state) ----
+# ---- Folio data (local-first means local state) ----
 data/
-.lumen/
+.folio/
 *.lance/
 *.sqlite
 *.db

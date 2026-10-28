@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from lumen.config import Settings
-from lumen.core.factory import build_ingest_pipeline
+from app.config import Settings
+from app.core.factory import build_ingest_pipeline
 
 
 def test_factory_wires_full_graph(tmp_path: Path) -> None:

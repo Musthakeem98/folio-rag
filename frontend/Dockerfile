@@ -12,11 +12,11 @@ RUN corepack enable && pnpm build
 FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-RUN addgroup -S lumen && adduser -S lumen -G lumen
+RUN addgroup -S folio && adduser -S folio -G folio
 COPY --from=builder /app/public ./public
-COPY --from=builder --chown=lumen:lumen /app/.next/standalone ./
-COPY --from=builder --chown=lumen:lumen /app/.next/static ./.next/static
-USER lumen
+COPY --from=builder --chown=folio:folio /app/.next/standalone ./
+COPY --from=builder --chown=folio:folio /app/.next/static ./.next/static
+USER folio
 EXPOSE 3000
 ENV PORT=3000 HOSTNAME=0.0.0.0
 CMD ["node", "server.js"]

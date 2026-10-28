@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from lumen.core.schemas import Chunk
+from app.core.schemas import Chunk
 
 
 class VectorStore(Protocol):

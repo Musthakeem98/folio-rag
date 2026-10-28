@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-4xl font-semibold tracking-tight">Lumen</h1>
+      <h1 className="text-4xl font-semibold tracking-tight">Folio</h1>
       <p className="mt-3 text-neutral-600">Local-first, open-source RAG for PDFs and the web.</p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">

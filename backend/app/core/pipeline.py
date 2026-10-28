@@ -9,8 +9,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from lumen.core.ids import doc_id_for
-from lumen.core.schemas import Answer, Chunk, Document
+from app.core.ids import doc_id_for
+from app.core.schemas import Answer, Chunk, Document
 
 
 @dataclass

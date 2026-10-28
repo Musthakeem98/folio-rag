@@ -4,9 +4,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from lumen.api.routes import chat, documents, eval as eval_routes, health
-from lumen.config import get_settings
-from lumen.core.factory import build_ingest_pipeline
+from app.api.routes import chat, documents, eval as eval_routes, health
+from app.config import get_settings
+from app.core.factory import build_ingest_pipeline
 
 
 @asynccontextmanager
@@ -22,7 +22,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(
-        title="Lumen",
+        title="Folio",
         version="0.0.1",
         description="Local-first open-source RAG.",
         lifespan=lifespan,
