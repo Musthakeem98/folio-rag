@@ -33,6 +33,9 @@ class Settings(BaseSettings):
     llm_model: str = "qwen2.5:7b-instruct"
     ollama_host: str = "http://ollama:11434"
 
+    # Docling (document parsing service)
+    docling_host: str = "http://docling:5001"
+
 
 @lru_cache
 def get_settings() -> Settings:

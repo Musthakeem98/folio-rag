@@ -4,24 +4,27 @@ Companion to [`BLUEPRINT.md`](BLUEPRINT.md) — this file goes deeper on the run
 
 ## Process model
 
-A single FastAPI process hosts the API and all pipeline components. LanceDB is embedded (not a separate service). BM25 indices live on disk next to LanceDB tables.
+A single FastAPI process hosts the API and the retrieval/generation pipeline. LanceDB is embedded (not a separate service). BM25 indices live on disk next to LanceDB tables. Heavy model-serving work — LLM inference and PDF parsing — runs in dedicated containers so the API image stays slim.
 
 ```
 ┌──────────────────────────────────────────────────────────┐
 │ lumen-api (FastAPI, uvicorn)                             │
 │                                                          │
-│  Routes ─▶ QueryPipeline ─▶ Hybrid ─▶ Rerank ─▶ Ollama   │
-│                 │                                        │
-│                 ▼                                        │
-│           LanceDB (embedded)                             │
-│           bm25s index (on disk)                          │
-└──────────────────────────────────────────────────────────┘
-                      │
-                      │ HTTP (localhost)
-                      ▼
-┌──────────────────────────────────────────────────────────┐
-│ ollama (separate container, exposes 11434)               │
-└──────────────────────────────────────────────────────────┘
+│  /ingest ──▶ IngestPipeline ─▶ Chunker ─▶ Embedder ─┐    │
+│                 │                                   │    │
+│                 ▼ HTTP (parse)                      ▼    │
+│                                           LanceDB (embed)│
+│  /chat ──▶ QueryPipeline ─▶ Hybrid ─▶ Rerank ─▶ Ollama   │
+│                                              ▲ HTTP      │
+│                                              │           │
+│           bm25s index (on disk)              │           │
+└──────────────────────────────────────────────┼───────────┘
+                      │                       │
+                      ▼                       ▼
+         ┌─────────────────────┐   ┌────────────────────────┐
+         │ docling (:5001)     │   │ ollama (:11434)        │
+         │ layout + OCR models │   │ Qwen2.5-7B / etc.      │
+         └─────────────────────┘   └────────────────────────┘
 ```
 
 ## Why embedded vector store
@@ -34,7 +37,7 @@ The trade-off is that scaling-out requires swapping LanceDB for a networked stor
 
 ## Ingest concurrency
 
-Document parsing is CPU-bound (Docling layout analysis). We fan out across a bounded `asyncio` worker pool whose size matches CPU count minus one. Embedding uses the model's native batch dim. Writes to LanceDB are batched (default 256 chunks per upsert).
+Document parsing is delegated to the `docling` container over HTTP. The API fans out parse requests via a bounded `asyncio` pool; docling-serve handles its own internal concurrency (and GPU batching when the GPU profile is enabled). Embedding uses the model's native batch dim. Writes to LanceDB are batched (default 256 chunks per upsert).
 
 ## Query lifecycle
 

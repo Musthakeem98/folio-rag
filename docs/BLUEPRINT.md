@@ -24,9 +24,10 @@ The OSS RAG space is crowded but shallow. Most frameworks optimize for *coverage
 | **api** | FastAPI + ingest/retrieve/generate pipelines | Python 3.12 |
 | **web** | Next.js 14 App Router UI | Node 20 |
 | **ollama** | Local LLM runtime | Ollama latest |
+| **docling** | PDF parsing (layout, tables, OCR) via docling-serve | docling-serve-cpu (gpu profile available) |
 | *(optional)* **nginx** | Single-port reverse proxy for public exposure | nginx:alpine |
 
-Everything runs in Docker Compose. The vector store (LanceDB) is embedded inside the API process — no separate DB container by default, no network hop, no auth plumbing.
+Everything runs in Docker Compose. The vector store (LanceDB) is embedded inside the API process — no separate DB container by default, no network hop, no auth plumbing. Docling runs separately so its ~GB of layout and OCR models stay out of the API image and GPU can be scoped to parsing only.
 
 ### 3.2 Pipelines
 
@@ -63,7 +64,7 @@ Factories in `core/pipeline.py` read the YAML config and wire the graph at start
 
 | Layer | Default | Why | Alternatives behind interface |
 |---|---|---|---|
-| PDF parser | **Docling** | Layout, tables, formulas, reading order; best open option for 2026 | MinerU, Unstructured |
+| PDF parser | **Docling** (via docling-serve container) | Layout, tables, formulas, reading order; best open option for 2026. Runs as its own service so the API stays lean | MinerU, Unstructured |
 | Chunker | Markdown structural | Chunks respect headings and tables; emits char offsets for citation highlighting | Fixed-size, semantic (Chonkie), LLM-chunker |
 | Embedder | **BGE-M3** (sentence-transformers) | Multilingual, 1024-dim, strong recall, runs on CPU | nomic-embed-text-v1.5, Snowflake Arctic |
 | Vector store | **LanceDB** | Embedded, columnar, zero-ops, great Python API | Qdrant single-node, sqlite-vec |

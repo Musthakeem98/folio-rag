@@ -28,7 +28,6 @@ dependencies = [
     "rich>=13.9",
     "pyyaml>=6.0",
     "sse-starlette>=2.1",
-    "docling>=2.0",
     "sentence-transformers>=3.2",
     "lancedb>=0.14",
     "pyarrow>=17.0",

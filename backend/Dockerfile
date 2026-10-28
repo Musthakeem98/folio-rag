@@ -8,10 +8,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 RUN apt-get update && apt-get install -y --no-install-recommends \
       build-essential \
       curl \
-      libmagic1 \
-      poppler-utils \
-      tesseract-ocr \
     && rm -rf /var/lib/apt/lists/*
+# No PDF/OCR system deps here — those live in the docling container.
 
 WORKDIR /app
 

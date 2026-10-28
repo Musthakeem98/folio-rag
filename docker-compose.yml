@@ -9,6 +9,7 @@ services:
     env_file: .env
     environment:
       OLLAMA_HOST: http://ollama:11434
+      LUMEN_DOCLING_HOST: http://docling:5001
       LUMEN_LANCEDB_PATH: /data/lancedb
       HF_HOME: /models/hf
     ports:
@@ -19,12 +20,49 @@ services:
     depends_on:
       ollama:
         condition: service_healthy
+      docling:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health').status==200 else 1)"]
       interval: 15s
       timeout: 5s
       retries: 10
       start_period: 30s
+    restart: unless-stopped
+
+  docling:
+    # CPU image by default. For GPU, run with `--profile gpu` and swap in the
+    # cu124 variant (see the gpu profile below). Pin a specific tag for
+    # reproducibility before you ship.
+    image: quay.io/docling-project/docling-serve-cpu:latest
+    container_name: lumen-docling
+    environment:
+      DOCLING_SERVE_ENABLE_UI: "false"
+    ports:
+      - "5001:5001"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:5001/health').status==200 else 1)"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+  docling-gpu:
+    profiles: ["gpu"]
+    image: quay.io/docling-project/docling-serve-cu124:latest
+    container_name: lumen-docling-gpu
+    environment:
+      DOCLING_SERVE_ENABLE_UI: "false"
+    ports:
+      - "5001:5001"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     restart: unless-stopped
 
   web:
