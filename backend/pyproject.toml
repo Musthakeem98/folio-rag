@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "folio"
+name = "folio-rag"
 version = "0.0.1"
 description = "Local-first, open-source RAG for PDFs and the web."
 readme = "README.md"
@@ -60,8 +60,8 @@ gpu = [
 folio = "app.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/your-org/folio"
-Issues = "https://github.com/your-org/folio/issues"
+Homepage = "https://github.com/Musthakeem98/folio-rag"
+Issues = "https://github.com/Musthakeem98/folio-rag/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["app"]
