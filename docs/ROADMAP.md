@@ -6,18 +6,35 @@ Phased plan. Each phase ships something runnable so quality can be measured befo
 - One-page README pitch, named differentiator.
 - Benchmark pre-selection: FinanceBench + LegalBench-RAG as north-star corpora.
 
-## Phase 1 — Walking skeleton (CURRENT)
+## Phase 1 — Walking skeleton (DONE)
 - Scaffold: FastAPI, Typer CLI, Next.js UI, docker-compose.
 - Protocols for parser / chunker / embedder / store / retriever / generator.
 - Health endpoint reachable end-to-end through the compose stack.
 - `pytest` + lint green.
 
-## Phase 2 — Real ingest + retrieve
-- Docling PDF parser wired, markdown-structural chunker wired.
-- BGE-M3 embedder, LanceDB upsert path, dense retrieval returning real hits.
-- BM25 index + RRF fusion.
-- Cross-encoder reranker.
-- `lumen index ./sample_docs` and `lumen ask "..."` produce cited answers from the CLI.
+## Phase 2 — Real ingest (DONE for ingest, retrieve still pending)
+- [x] Markdown-structural chunker (heading-aware, preserves tables and code).
+- [x] Docling parser as a thin HTTP client to `docling-serve`.
+- [x] Web parser via `trafilatura`.
+- [x] BGE-M3 embedder (sentence-transformers, lazy-loaded, async-safe).
+- [x] LanceDB vector store with upsert-by-doc-id semantics.
+- [x] BM25 (`bm25s`) sparse index with on-disk persistence, rebuilt per ingest.
+- [x] `IngestPipeline` factory wiring + `/api/v1/documents/{upload,url}` routes.
+- [x] `lumen index <file|dir|url>` CLI.
+- [x] Integration test: real LanceDB + BM25 against fixture corpus.
+- [ ] Dense retrieval returning real hits (query path).
+- [ ] Hybrid RRF fusion.
+- [ ] Cross-encoder reranker.
+- [ ] `lumen ask "..."` producing cited answers.
+
+### Known gaps carried forward
+- PDF page tracking: Docling exposes per-element provenance in its structured
+  output; we currently take only markdown, so `Chunk.page` is `None` for PDFs.
+  Fix by requesting the `doc` format and building a `char_offset → page` map.
+- Ingest is inline on the upload endpoint. For large PDFs we want a background
+  job queue (ARQ or Redis streams) and a `/jobs/{id}` status endpoint.
+- BM25 is rebuilt from scratch after each ingest. Fine for personal corpora,
+  but we'll want shard+append once a user has >100k chunks.
 
 ## Phase 3 — Eval harness
 - Golden-set loader + runner.

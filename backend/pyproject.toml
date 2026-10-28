@@ -37,6 +37,8 @@ dependencies = [
     "aiofiles>=24.1",
     "tenacity>=9.0",
     "structlog>=24.4",
+    "trafilatura>=1.12",
+    "markdown-it-py>=3.0",
 ]
 
 [project.optional-dependencies]
